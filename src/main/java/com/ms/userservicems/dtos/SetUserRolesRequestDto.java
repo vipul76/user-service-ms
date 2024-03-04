@@ -1,6 +1,5 @@
 package com.ms.userservicems.dtos;
 
-import com.ms.userservicems.models.Role;
 import lombok.Getter;
 import lombok.Setter;
 
