@@ -7,9 +7,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.logging.Logger;
+
 @RestController
 @RequestMapping(value="/users")
 public class UserController {
+
+    Logger logger = Logger.getLogger(UserController.class.getName());
 
     private final UserService userService;
 
@@ -18,8 +22,10 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
-    private ResponseEntity<UserDto> getUserDetails(@PathVariable("id") Long userId){
+    private ResponseEntity<?> getUserDetails(@PathVariable("id") Long userId){
         UserDto userDto = userService.getUserDetails(userId);
+        logger.info("user details : ");
+        String errorMsg = "No user found for the id : "+userId;
         return new ResponseEntity<>(userDto, HttpStatus.OK);
     }
 
